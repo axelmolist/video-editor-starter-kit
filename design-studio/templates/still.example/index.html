@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=1080, height=1350"/>
+<!-- Worked STILL example. Renders to one PNG.
+     Canvas 1080x1350 (4:5 portrait still). Change data-width/height and the html/body/#root
+     sizes together to target other sizes (1080x1080 square, 1080x1920 portrait, 1280x720
+     thumbnail). Run `python3 scripts/apply_brand.py` first so brand.css exists. -->
+<link rel="stylesheet" href="../../brand.css"/>
+<link rel="stylesheet" href="../../design-system.css"/>
+<!-- REQUIRED, LAST: fonts inlined as data: URIs. Without it HyperFrames grabs the still
+     before webfonts load and bakes the fallback font in. -->
+<link rel="stylesheet" href="../../fonts-embedded.css"/>
+<style>
+  html,body{ width:1080px; height:1350px; overflow:hidden; font-family:var(--font-body) }
+  #root{ position:relative; width:1080px; height:1350px }
+  .kicker{ position:absolute; top:var(--edge-pad); left:var(--edge-pad) }
+  .rule{ position:absolute; left:var(--edge-pad); top:500px; width:160px }
+  .headline{ position:absolute; left:var(--edge-pad); right:var(--edge-pad); top:540px }
+  .footer{ position:absolute; left:var(--edge-pad); bottom:var(--edge-pad); color:var(--muted);
+           font-weight:700; letter-spacing:4px; text-transform:uppercase; font-size:24px }
+</style>
+</head>
+<body>
+  <!-- A STILL is a single frame: data-duration is one frame at 25fps = 0.04s. -->
+  <div id="root" data-composition-id="main" data-start="0" data-duration="0.04" data-width="1080" data-height="1350">
+    <!-- GOTCHA: PNG sequences render with ALPHA, so html/body backgrounds are dropped.
+         Always paint the backdrop on this in-DOM element. -->
+    <div class="ds-bg"></div>
+    <div class="kicker ds-kicker">Series name</div>
+    <div class="rule ds-underline"></div>
+    <div class="headline ds-display">One clear idea,<br/>one <span class="ds-accent">accent</span> word.</div>
+    <div class="footer">example.com</div>
+  </div>
+</body>
+</html>

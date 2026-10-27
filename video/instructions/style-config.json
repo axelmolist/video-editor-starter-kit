@@ -1,0 +1,57 @@
+{
+  "_comment": "How videos are built. Brand values (palette, fonts, output size and fps) come from config/brand.json and are merged in by video/lib/kitconfig.py; do not copy them here. Every agent and build script reads the merged result. /setup writes the caption choices below from your answers.",
+  "output": {
+    "_comment": "Width, height and fps come from config/brand.json 'output'. Rule: footage in at the house resolution and fps goes out at the same resolution and fps. Never downscale a master, never change the frame rate mid-pipeline. Verify every render with ffprobe (width, height, r_frame_rate).",
+    "caption_playres": {"width": 1080, "height": 1920, "note": "captions.py authors at this PlayRes; libass scales to the real frame, so caption size/y below are in 1080x1920 space and need no change for 4K."}
+  },
+  "captions": {
+    "case": "as-spoken",
+    "case_options": ["as-spoken", "upper", "lower"],
+    "size": 58,
+    "max_words": 2,
+    "y": 1380,
+    "position": "lower-third",
+    "position_note": "y is the vertical centre in a 1080x1920 frame. Lower third (y ~1380) sits over the chest for a head-and-shoulders framing; centre (y 960) suits split-screen podcast shorts. Measure against your own framing: captions must clear the hands, the desk edge and the chin.",
+    "outline": "always",
+    "outline_note": "always = every caption gets an outline (pick this if you film against a light background, so the look is consistent). 'adaptive' = outline only where the background under the caption is light. 'never' = no outline.",
+    "outline_colour": "#000000",
+    "outline_luminance_threshold": 135,
+    "outline_width_on_light": 3,
+    "outline_width": 3,
+    "highlight_colour": "",
+    "highlight_note": "Empty = the palette accent. Words in accent_words are drawn in this colour.",
+    "accent_words": [],
+    "kinetic": true
+  },
+  "grade": {
+    "_comment": "HOUSE COLOUR GRADE, applied to every video so all outputs share one look. Empty until the colour-grader agent builds one with you from a still of your footage. Keep it as an ffmpeg filter string plus a note of the intent.",
+    "ffmpeg_filter": "",
+    "intent": "",
+    "applied_in": "Baked into the per-segment vf during the raw-footage cut. For a video that arrives already cut, apply the same filter as a grade pass BEFORE captions and graphics."
+  },
+  "graphics": {
+    "title_note": "Big headline/title text uses the title font in the accent colour. In HTML/CSS load fonts with @font-face src: local('<exact face name>') or a base64 data: URI. NEVER url(file://...): it silently falls back to a serif.",
+    "label_weight_note": "Labels and eyebrows use the body font at 600/700. Register the real weights with separate @font-face rules: a single Regular @font-face renders thin because font-weight has no real face to use."
+  },
+  "animations": {
+    "supersample": 2,
+    "fps": 25,
+    "scale": "full-screen",
+    "energy": "punchy",
+    "energy_note": "high = full-screen takeovers, hard snaps, slamming type. punchy = quick, confident, no shake. refined = slow eases, small scale.",
+    "never_cut_source": true,
+    "never_cut_note": "When a finished cut is supplied, it is final. NEVER trim, cut or reorder it. Only add captions and animation overlays.",
+    "min_gap_seconds": 2,
+    "minimalism_rule": "ONE simple primitive per beat: the least graphic that conveys the idea. Allowed primitives: counter, line_graph, pie, bars, arrow, text_slam. Never bespoke many-element compositions (no swarms of dots, no dozens of converging lines). Energy comes from scale and motion, not from adding elements.",
+    "primitives": ["counter", "line_graph", "pie", "bars", "arrow", "text_slam"],
+    "text_rule": "All on-screen text is crisp and full-opacity once revealed. No faint, low-contrast or pre-appearing labels. Spelling follows config/brand.json locale. Sentence case for sentences; short ALL-CAPS labels are allowed for energy.",
+    "medium_note": "Engines: Remotion (React, default) or HyperFrames (HTML/CSS via npx hyperframes). For HyperFrames, fonts MUST load with @font-face src: local('<exact face name>') or a base64 data: URI. Caption fontsdir must be a CLEAN font dir (only font files): libass tries to load every file in it and chokes on non-fonts.",
+    "constant_motion": true,
+    "constant_motion_note": "A graphic is always moving while on screen, OR it completes its motion and then holds still until it leaves. Never start-stop-start. The climax lands the section's key point; the graphic is gone within ~0.5-0.8 s after it lands. Scenes ~2-4 s; face and captions carry the rest.",
+    "taste_rule": "Subtle, minimal, clear. No checkmarks, clip-art icons, emoji or gimmicks. Convey meaning through the graphic itself (a bar reaching a line = works; an accent-coloured shortfall = fails), never literal symbols.",
+    "no_intricate_alignment": "If a design needs precise alignment of many small elements (labels under bars, grids, calendars) and there is ANY risk of misalignment, simplify radically or skip. A misaligned graphic is worse than no graphic.",
+    "one_beat_one_idea": "Never combine two separate sentences or ideas into one graphic.",
+    "text_slam_primitive": "Full-screen text slams are valid: background colour + a single phrase (accent or text colour), timed to the word. Zero alignment risk, maximum impact for emotional beats.",
+    "label_positioning": "Place labels OUTSIDE the graphic area (above, below, sides) so lines, bars and arrows cannot reach them."
+  }
+}

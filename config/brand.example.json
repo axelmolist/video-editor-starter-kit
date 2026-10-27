@@ -1,0 +1,89 @@
+{
+  "_comment": "Template. /setup copies this to config/brand.json and fills it from your answers. Every agent and script reads brand.json; nothing about your brand is hard-coded anywhere else. Secrets never go here: they live in .env.",
+  "brand_name": "Example Channel",
+  "presenters": [
+    {
+      "name": "Presenter Name",
+      "role": "host"
+    }
+  ],
+  "website": "example.com",
+  "design_language": "Describe the look in your own words: e.g. calm and editorial, lots of space, one accent colour, no gimmicks.",
+  "references": [],
+  "palette": {
+    "background": "#111418",
+    "primary": "#1F2933",
+    "accent": "#3B82F6",
+    "text": "#F5F7FA",
+    "muted": "#8A94A6",
+    "extras": {}
+  },
+  "fonts": {
+    "title": {
+      "name": "Inter",
+      "bold_name": "Inter Bold",
+      "file": ""
+    },
+    "body": {
+      "name": "Inter",
+      "bold_name": "Inter Bold",
+      "file": ""
+    },
+    "captions": {
+      "name": "Inter",
+      "bold_name": "Inter Bold",
+      "file": ""
+    }
+  },
+  "logos": {
+    "light": "brand/logos/logo-light.svg",
+    "dark": "brand/logos/logo-dark.svg",
+    "mark": ""
+  },
+  "locale": "en-US",
+  "formats": [
+    "youtube-long",
+    "podcast",
+    "podcast-shorts",
+    "shorts",
+    "vlog"
+  ],
+  "output": {
+    "landscape": {
+      "width": 3840,
+      "height": 2160
+    },
+    "vertical": {
+      "width": 2160,
+      "height": 3840
+    },
+    "fps": 25
+  },
+  "paths": {
+    "projects": "video/projects",
+    "raw_footage": "",
+    "broll_library": "video/projects",
+    "broll_archive": "",
+    "music": "video/working-material/music",
+    "sfx": "video/working-material/sfx"
+  },
+  "animation": {
+    "engines": [
+      "remotion"
+    ],
+    "default_engine": "remotion"
+  },
+  "generated_media": {
+    "allow_ai_broll": false,
+    "allow_ai_stills": false,
+    "provider": "higgsfield",
+    "note": "AI-generated b-roll is off by default. Many creators ban it because it reads as filler; turn it on only if you want it."
+  },
+  "integrations": {
+    "transcription": "elevenlabs-scribe",
+    "youtube_mcp": false,
+    "buffer": false,
+    "object_storage": false
+  },
+  "export_approval": true
+}

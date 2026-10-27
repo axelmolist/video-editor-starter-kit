@@ -1,0 +1,109 @@
+{
+  "_doc": "Example episode config: a remote two-person interview. Host camera A is a 4K local recording that tracks the face; guest camera G is a 1080p webcam with a fixed crop. Copy this file per episode and measure every number on real stills of YOUR footage. All times are host-audio seconds unless a key says otherwise.",
+  "episode": "example-episode",
+  "episode_dir": "video/projects/podcasts/example-show/e01-guest-name",
+  "shorts_dir": "shorts",
+  "fps": 25,
+  "out_w": 2160,
+  "out_h": 3840,
+  "audio": {
+    "host_wav": "project/audio/host-audio.wav",
+    "other_wav": "project/audio/guest-audio.wav",
+    "host_transcript": "project/transcripts/host-audio.json",
+    "other_transcript": "project/transcripts/guest-audio.json",
+    "loudness_lufs": -14,
+    "true_peak": -1.5
+  },
+  "cameras": {
+    "A": {
+      "who": "host",
+      "kind": "tracked",
+      "path": "raw-footage/host.mov",
+      "av_offset": 0.3,
+      "v_start": 0.048,
+      "src_w": 3840,
+      "src_h": 2160,
+      "column_w": 1800,
+      "face_track": "shorts/_toolchain/face_track.json",
+      "plate": "shorts/_toolchain/wall_plate.png",
+      "pad_top": 400,
+      "hair_above_mouth": 690,
+      "chin_below_mouth": 170,
+      "base_hair_min": 670,
+      "panel_scale": 1.25,
+      "panel_mouth": 1120,
+      "hair_above_box": 160
+    },
+    "G": {
+      "who": "guest",
+      "kind": "static",
+      "path": "raw-footage/guest.mov",
+      "src_w": 1920,
+      "src_h": 1080,
+      "full_scale": 3.8,
+      "mouth_y_src": 680,
+      "hair_y_src": 255,
+      "panel_crop": [
+        1215,
+        1080,
+        360,
+        0
+      ],
+      "fx": "unsharp=5:5:0.5:5:5:0.0",
+      "face_cx_src": 1010
+    }
+  },
+  "grade": "colortemperature=temperature=9000:mix=0.7,eq=saturation=1.2",
+  "punch_z": 1.08,
+  "hook": {
+    "scale": 1.3
+  },
+  "hook_hair_margin": 40,
+  "hook_punch_margin": 20,
+  "broll": {},
+  "shorts": {
+    "host-example-short": {
+      "owner": "host",
+      "title": [
+        "The {one thing} most founders get wrong"
+      ],
+      "segs": [
+        [
+          100.0,
+          106.0
+        ],
+        [
+          106.8,
+          121.5
+        ]
+      ],
+      "shots": [
+        [
+          0,
+          "A"
+        ],
+        [
+          5.8,
+          "G"
+        ],
+        [
+          6.9,
+          "A"
+        ]
+      ],
+      "cues": [
+        [
+          "This is the first caption",
+          100.2,
+          101.1
+        ],
+        [
+          "and the {key word}",
+          101.2,
+          102.0
+        ]
+      ],
+      "other_mic_gain": 1.6
+    }
+  }
+}

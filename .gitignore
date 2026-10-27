@@ -1,0 +1,46 @@
+# Secrets. Never commit these.
+.env
+.secrets/
+
+# Your brand config and setup marker (the example stays in git)
+config/brand.json
+config/.setup-complete
+brand/voice.md
+brand/logos/*
+!brand/logos/.gitkeep
+brand/references/*
+!brand/references/.gitkeep
+
+# Generated from config by scripts/apply_brand.py
+remotion/src/brand.generated.json
+remotion/public/fonts/
+remotion/public/brand/
+design-studio/brand.css
+design-studio/fonts-embedded.css
+
+# Your projects and media
+video/projects/*
+!video/projects/README.md
+video/working-material/music/*
+video/working-material/sfx/*
+video/working-material/style-references/*
+video/working-material/models/
+video/working-material/*.png
+!video/working-material/**/.gitkeep
+video/broll-index/
+video/lib/podcast_shorts_engaged/episodes/*
+!video/lib/podcast_shorts_engaged/episodes/example.json
+*.mp4
+*.mov
+*.mxf
+*.wav
+*.m4a
+*.mp3
+
+# Build output
+remotion/out/
+remotion/renders/
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store

@@ -1,0 +1,26 @@
+{
+  "name": "video-starter-remotion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion motion graphics for the video editor starter kit. Brand tokens come from config/brand.json.",
+  "scripts": {
+    "brand": "python3 ../scripts/apply_brand.py",
+    "prestudio": "npm run brand",
+    "studio": "remotion studio",
+    "prerender": "npm run brand",
+    "render": "remotion render",
+    "still": "remotion still",
+    "pretypecheck": "npm run brand",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "remotion": "^4.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "typescript": "^5.4.0"
+  }
+}

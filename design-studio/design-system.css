@@ -1,0 +1,34 @@
+/*
+ * design-studio render layer. Brand tokens (--background, --primary, --accent, --text, --muted,
+ * --font-title, --font-body, --font-captions) come from brand.css, generated from
+ * config/brand.json by scripts/apply_brand.py. Never put a colour or a font name in this file.
+ *
+ * LINK ORDER (HyperFrames does NOT follow @import inside a linked stylesheet): every
+ * composition <link>s brand.css, then this file, then fonts-embedded.css LAST.
+ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root { --edge-pad: 96px; }   /* safe-area padding from the frame edge on social canvases */
+
+/* The backdrop. Paint on an in-DOM element, NOT html/body:
+   PNG sequences render with alpha and drop body backgrounds. */
+.ds-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% 16%, var(--primary) 0%, var(--background) 60%);
+}
+
+/* Render-scale headings: social canvases are 1080-2160px wide, so these run large. */
+.ds-display { font-family: var(--font-title); font-weight: 700; font-size: 120px; line-height: 1.02;
+              letter-spacing: -0.02em; color: var(--text); }
+.ds-h1 { font-family: var(--font-title); font-weight: 700; font-size: 72px; line-height: 1.08; color: var(--text); }
+.ds-h2 { font-family: var(--font-title); font-weight: 700; font-size: 52px; line-height: 1.12; color: var(--text); }
+.ds-body { font-family: var(--font-body); font-weight: 400; font-size: 36px; line-height: 1.4; color: var(--text); }
+.ds-kicker { font-family: var(--font-body); font-weight: 700; text-transform: uppercase;
+             letter-spacing: 0.3em; font-size: 30px; color: var(--muted); }
+
+/* Signature devices. The accent is a guest, never the host: one accent element per frame. */
+.ds-accent { color: var(--accent); }
+.ds-dot { width: 34px; height: 34px; border-radius: 999px; background: var(--accent); }
+.ds-underline { height: 6px; background: var(--accent); border-radius: 3px; }
