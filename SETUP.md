@@ -1,19 +1,18 @@
-<!-- DRAFT: to be audited by the copywriter before publishing. -->
 # Setup
 
-About twenty minutes, most of it installing tools. Claude Code does most of it with you: after step 2 you can just
-run `claude` in the folder and it takes over.
+Most of setup is installing tools. Once the kit is cloned, run `claude` in the folder and it takes you through the
+rest; onboarding itself takes about ten minutes.
 
 ## 0. What you need
 
-- **macOS or Linux.** Windows works through WSL2, untested.
+- **macOS or Linux.** Windows through WSL2 may work, but it hasn't been tested.
 - **[Claude Code](https://claude.com/claude-code)** (or Codex; both read `AGENTS.md`).
 - **ffmpeg** with libass: `brew install ffmpeg` (macOS) or `sudo apt install ffmpeg` (Debian/Ubuntu).
 - **Node.js 22**: [nodejs.org](https://nodejs.org) or `brew install node@22`.
 - **Python 3.9+** with numpy and Pillow, and optionally [uv](https://docs.astral.sh/uv/).
 - **An ElevenLabs account with API access** (paid) for transcription: [elevenlabs.io](https://elevenlabs.io).
-- **Your fonts**, installed, with their font files to hand, and the rights to use them in video.
-- **Your logo** as SVG or transparent PNG, light and dark versions.
+- **Your fonts**, installed, with the font files to hand and the rights to use them in video.
+- **Your logo** as SVG or transparent PNG, in a light and a dark version.
 - Optional: **Final Cut Pro** for the project-file workflows; **Higgsfield** for generated images and video;
   **S3-compatible storage** and **Buffer** for scheduling.
 
@@ -33,11 +32,11 @@ If you push your copy anywhere, make it **private** once it holds your brand con
 claude
 ```
 
-Say anything. The agent sees there is no `config/brand.json` and starts onboarding: brand and presenters, formats,
+Say anything. The agent sees there's no `config/brand.json` and starts onboarding: brand and presenters, formats,
 design language, palette (it can read one from your logo or website), fonts, logos, caption style, spelling, output
-size and frame rate, folders, keys, animation engine and integrations. Rerun it any time with `/setup`.
+size and frame rate, folders, keys, animation engine and integrations. You can rerun it any time with `/setup`.
 
-The rest of this file is what onboarding does, in case you prefer to do it by hand.
+The rest of this file is what onboarding does, if you'd rather do it by hand.
 
 ## 3. Install the video-use skill
 
@@ -70,7 +69,7 @@ cp brand/voice.example.md brand/voice.md
 python3 scripts/apply_brand.py                       # writes Remotion and CSS brand tokens
 ```
 
-Edit caption settings in `video/instructions/style-config.json`.
+Caption settings are in `video/instructions/style-config.json`.
 
 ## 6. Higgsfield (optional)
 
@@ -88,10 +87,11 @@ python3 video/lib/tests/test_kitconfig_spelling.py
 cd remotion && npm run typecheck
 ```
 
-Doctor prints PASS / WARN / FAIL per item. Fix every FAIL. When it is clean, onboarding writes
-`config/.setup-complete` and the agents start taking jobs.
+Doctor prints PASS, WARN or FAIL for each item. Fix every FAIL; a WARN on something optional is fine. Once there's
+no FAIL left, onboarding writes `config/.setup-complete` and the agents start taking jobs.
 
 ## 8. First job
 
 Put a clip in `video/projects/shorts/my-first-short/raw-footage/` and tell Claude Code:
-"shorts-editor, make a short from video/projects/shorts/my-first-short". You get a preview to approve first.
+"shorts-editor, make a short from video/projects/shorts/my-first-short". You'll get a low-resolution preview to
+approve before the full-resolution master.
